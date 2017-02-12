@@ -1,0 +1,6 @@
+title = "My New Hugo Site"
+baseurl = "https://bheisler.github.io"
+languageCode = "en-us"
+paginate = 10
+
+enableRobotsTxt = true
