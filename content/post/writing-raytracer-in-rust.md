@@ -5,7 +5,6 @@ author = "Brook Heisler"
 images = [
     "https://bheisler.github.io/static/raytracer-first-render.png"
 ]
-draft = true
 +++
 
 # Introduction
