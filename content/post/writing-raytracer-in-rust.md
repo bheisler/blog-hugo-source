@@ -69,15 +69,16 @@ prime rays:
 By convention, the camera is aligned along the negative z-axis, with positive x
 towards the right and positive y being up. That's why the sphere is at
 (0.0, 0.0, -5.0) - it's directly centered, five units away from the camera.
-We'll start by pretending there's a two-unit by two-unit screen one unit in
-front of the camera, dividing that into pixels, and using the directions to each
+We'll start by pretending there's a two-unit by two-unit square one unit in
+front of the camera. This square represents the image sensor or film of our camera.
+Then we'll divide that sensor square into pixels, and using the directions to each
 pixel as our rays. We need to translate the (0...800, 0...600) coordinates of our
-pixels to the (-1.0...1.0, -1.0...1.0) coordinates of that screen. I'll start
+pixels to the (-1.0...1.0, -1.0...1.0) coordinates of the sensor. I'll start
 with the finished code for this step, then explain it in more detail.
 
 {{< gist bheisler be79c6e0871e4308443c0d4e61318fed >}}
 
-Let's unpack that a bit and focus on just the x component. The y component is
+Let's unpack that a bit and focus on only the x component. The y component is
 almost exactly the same.
 
     let pixel_center = x as f64 + 0.5;
@@ -86,7 +87,7 @@ almost exactly the same.
 
 First, we cast to float and add 0.5 (one half-pixel) because we want our ray to
 pass through the center (rather than the corner) of the pixel on our imaginary
-screen. Then we divide by the screen width to convert from our original
+sensor. Then we divide by the image width to convert from our original
 coordinates (0...800) to (0.0...1.0). That's almost, but not quite, the
 (-1.0...1.0) coordinates we want, so we multiply by two and subtract one. That's
 all there is to it! The y calculation follows the same basic process except the
@@ -100,17 +101,17 @@ the last step of the calculation.
 
 Then we pack the x and y components into a vector (z is -1.0 because all
 of our prime rays should go forward from the camera) and normalize it to get a
-nice direction vector. Simple, right? This is why the 2x2 screen 1 unit from the
+nice direction vector. Simple, right? This is why the 2x2 sensor 1 unit from the
 camera convention is convenient. If we'd used any other set of coordinates than
-(-1.0...1.0, -1.0...1.0) then the screen would be off center and/or we'd have to
-do more calculations to avoid distorting the image.
+(-1.0...1.0, -1.0...1.0) then the image would be off center and/or we'd have to
+do more calculations to avoid distorting it.
 
 We could actually stop here - this is a working prime ray generation function.
 However, it assumes that the image we're generating is perfectly square and that
 the field of view is precisely 90 degrees. It's probably worth adding a
 correction for other aspect ratios and different fields of view.
 
-To adjust for different aspect ratios, we just calculate the aspect ratio and
+To adjust for different aspect ratios, we calculate the aspect ratio and
 multiply it by the x coordinate. We're assuming that the image will be wider than
 it is tall, but most images are so that's good enough for now. If we didn't do
 this, the rays would be closer together in the x direction than in the y, which
@@ -146,6 +147,8 @@ the sphere, the ray must intersect the sphere. In practice, we actually do the
 check on length-squared values because square roots are expensive to calculate,
 but it's the same idea.
 
+![Sphere Intersection Test](/static/sphere-intersection-test.png)
+
 {{< gist bheisler 2fd3e237481614d13a34dc184cb5d106 >}}
 
 ## Finishing the Render Method
@@ -167,3 +170,6 @@ If you want to try playing around with the code yourself, you can check out the
 more about 3D rendering in general or raytracing in particular, check out
 [Scratchapixel](https://www.scratchapixel.com/index.php), which is the resource
 I used while working on this.
+
+Thanks to Scott Olson and Daniel Hogan for suggesting improvements to an
+earlier version of this article.
