@@ -2,6 +2,7 @@
 date = "2017-02-20T11:00:00-06:00"
 title = "Writing a Raytracer in Rust - Part 1 - First Rays"
 author = "Brook Heisler"
+description = ""
 images = [
     "https://bheisler.github.io/static/raytracer-first-render.png"
 ]
@@ -71,7 +72,7 @@ towards the right and positive y being up. That's why the sphere is at
 (0.0, 0.0, -5.0) - it's directly centered, five units away from the camera.
 We'll start by pretending there's a two-unit by two-unit square one unit in
 front of the camera. This square represents the image sensor or film of our camera.
-Then we'll divide that sensor square into pixels, and using the directions to each
+Then we'll divide that sensor square into pixels, and use the directions to each
 pixel as our rays. We need to translate the (0...800, 0...600) coordinates of our
 pixels to the (-1.0...1.0, -1.0...1.0) coordinates of the sensor. I'll start
 with the finished code for this step, then explain it in more detail.
@@ -163,7 +164,9 @@ rendered image to a file, we get the resulting image:
 
 ![First Rendered Image](/static/raytracer-first-render.png)
 
-It isn't very impressive yet, but we'll add more detail to it as we go.
+It isn't very impressive yet, but we'll add more detail to it as we go. In the
+[next post](/post/writing-raytracer-in-rust-part-2/),
+we'll add planes, multiple spheres, and some basic lighting effects.
 
 If you want to try playing around with the code yourself, you can check out the
 [GitHub Repository](https://github.com/bheisler/raytracer). If you want to learn
