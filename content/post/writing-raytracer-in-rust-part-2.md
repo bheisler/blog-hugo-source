@@ -1,5 +1,5 @@
 +++
-date = "2017-02-20T14:12:34-06:00"
+date = "2017-03-20T00:00:00-06:00"
 title = "Writing a Raytracer in Rust - Part 2 - Light and Shadow"
 author = "Brook Heisler"
 description = ""
@@ -11,7 +11,7 @@ images = [
 ## Introduction
 
 Welcome to Part 2 of my series on writing a raytracer in Rust. If you haven't
-already, you may wish to read [Part 1](/post/writing-raytracer-in-rust/).
+already, you may wish to read [Part 1](/post/writing-raytracer-in-rust-part-1/).
 Previously, we implemented a basic raytracer which can render only a single
 sphere with no lighting. This time, we'll add multiple objects, planes, and
 basic lighting.
@@ -254,7 +254,8 @@ Try doing that in five minutes in MS Paint!
 ## Conclusion
 
 We've taken this toy raytracer from producing an image of a green circle to a
-nicely-lit scene containing multiple objects. The last entry in this series will
-go on to add texturing as well as simple reflection and refraction simulations.
-As before, if you want to try playing around with the code yourself, you can
-check out the [GitHub Repository](https://github.com/bheisler/raytracer).
+nicely-lit scene containing multiple objects. The [last entry](/post/writing-raytracer-in-rust-part-3/)
+in this series will go on to add texturing as well as simple reflection and
+refraction simulations. As before, if you want to try playing around with the
+code yourself, you can check out the
+[GitHub Repository](https://github.com/bheisler/raytracer).
