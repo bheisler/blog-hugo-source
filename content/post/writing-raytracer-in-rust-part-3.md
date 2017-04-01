@@ -330,6 +330,36 @@ Click to see high-resolution image
 
 Beautiful, isn't it?
 
+## Addendum - Gamma Correction
+
+After I posted this article, [fstirlitz](https://github.com/fstirlitz)
+[pointed out](https://github.com/bheisler/raytracer/issues/2) that the lighting
+was a bit off because my code wasn't handling Gamma Correction correctly (or at
+all). I had noticed the strange lighting effects but had simply assumed they
+were an artifact of my relatively simple rendering process, and that a more
+advanced renderer would solve them.
+
+I'll spare you a detailed discussion of what Gamma Correction is (if you're
+interested, see [What Every Coder Should Know About Gamma](http://blog.johnnovak.net/2016/09/21/what-every-coder-should-know-about-gamma/) by John Novak).
+The short version is that human perception of light is non-linear. Our screens
+account for that by applying a power-law formula to the pixel values before
+displaying them. Correspondingly, image formats expect the pixel values to be
+in this non-linear color space, where my raytracer was writing out pixels in a
+linear color space. Likewise, when reading textures, it was reading non-linear
+color values and treating them as if they were linear. This mismatch caused
+the image to be generally darker, with sharper divisions between light and dark
+shades than the human eye would have seen.
+
+Fortunately, this is pretty easy to fix:
+
+{{< gist bheisler 972da2540646d4195b23a76db9fdd3ac >}}
+
+I've only implemented the basic power-law formula rather than the more complex
+sRGB conversion, but it's good enough for now.
+
+[![Gamma Corrected](/static/gamma-corrected.png)](http://imgur.com/a/tNhlk)
+Click to see high-resolution image
+
 ## Conclusion
 
 This is the end of my series on raytracing, at least for now. There are many,
