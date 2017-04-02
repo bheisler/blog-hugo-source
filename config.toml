@@ -4,3 +4,4 @@ languageCode = "en-us"
 paginate = 10
 
 enableRobotsTxt = true
+googleAnalytics = "UA-96560207-1"
