@@ -12,8 +12,6 @@ prev = "/post/writing-raytracer-in-rust-part-1/"
 next = "/post/writing-raytracer-in-rust-part-3/"
 +++
 
-## Introduction
-
 Welcome to Part 2 of my series on writing a raytracer in Rust. If you haven't
 already, you may wish to read [Part 1](/post/writing-raytracer-in-rust-part-1/).
 Previously, we implemented a basic raytracer which can render only a single

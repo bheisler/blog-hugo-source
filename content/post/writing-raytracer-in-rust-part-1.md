@@ -11,8 +11,6 @@ categories = ["code"]
 next = "/post/writing-raytracer-in-rust-part-2/"
 +++
 
-# Introduction
-
 Hello! This is part one of a short series of posts on writing a simple raytracer
 in Rust. I've never written one of these before, so it should be a learning
 experience all around.

@@ -11,8 +11,6 @@ categories = ["code"]
 prev = "/post/writing-raytracer-in-rust-part-2/"
 +++
 
-## Introduction
-
 Hello again, and welcome to the final part of my series on writing a raytracer
 in Rust ([Part 1](/post/writing-raytracer-in-rust-part-1/),
 [Part 2](/post/writing-raytracer-in-rust-part-2/)). Previously we implemented

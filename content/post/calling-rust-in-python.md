@@ -9,8 +9,6 @@ tags = ["Rust", "Python", "C", "FFI", "Raytracer"]
 categories = ["code"]
 +++
 
-# Introduction
-
 Hello! This is a detailed example of exposing Rust code to other languages (in
 this case, Python). Most articles I've seen that cover this topic uses really
 trivial example functions, skipping over a lot of the complexity. Even the better
