@@ -6,6 +6,10 @@ description = ""
 images = [
     "https://bheisler.github.io/static/spherical-lights.png"
 ]
+tags = ["Rust", "Raytracer"]
+categories = ["code"]
+prev = "/post/writing-raytracer-in-rust-part-1/"
+next = "/post/writing-raytracer-in-rust-part-3/"
 +++
 
 ## Introduction

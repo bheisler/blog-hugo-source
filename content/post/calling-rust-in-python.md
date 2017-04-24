@@ -1,12 +1,12 @@
 +++
-#TODO: fix date
 date = "2017-04-02T00:00:00-06:00"
 description = ""
 title = "Calling Rust From Python"
-#TODO: Add image
 images = [
     "https://bheisler.github.io/static/rendered-by-python.png"
 ]
+tags = ["Rust", "Python", "C", "FFI", "Raytracer"]
+categories = ["code"]
 +++
 
 # Introduction
