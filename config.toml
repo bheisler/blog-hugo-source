@@ -5,3 +5,22 @@ paginate = 10
 
 enableRobotsTxt = true
 googleAnalytics = "UA-96560207-1"
+
+[taxonomies]
+tag = "tags"
+category = "categories"
+
+[[menu.main]]
+    name = "all"
+    identifier = "all"
+    url = "/"
+
+[[menu.main]]
+    name = "code"
+    identifier = "code"
+    url = "/categories/code/"
+
+[[menu.main]]
+    name = "props"
+    identifier = "props"
+    url = "/categories/props/"
