@@ -11,16 +11,21 @@ tag = "tags"
 category = "categories"
 
 [[menu.main]]
-    name = "all"
+    name = "All"
     identifier = "all"
     url = "/"
 
 [[menu.main]]
-    name = "code"
+    name = "Code"
     identifier = "code"
     url = "/categories/code/"
 
 [[menu.main]]
-    name = "props"
+    name = "Props"
     identifier = "props"
     url = "/categories/props/"
+
+[[menu.main]]
+    name = "About"
+    identifier = "about"
+    url = "/about/about/"
