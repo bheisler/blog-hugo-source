@@ -156,7 +156,7 @@ to get some more help from the compiler when I make mistakes. On the other hand,
 once you do get the hang of it, it's quick and easy to define parsers for quite
 complex data structures and the code reads a lot like a description of the format
 to be parsed, which is always nice. nom has some beautifully clear example parsers
-to look at (take [this GIF parser](https://github.com/Geal/gif.rs/blob/master/),
+to look at (take [this GIF parser](https://github.com/Geal/gif.rs),
 for example). It works on both binary and text data as well, which is a plus.
 
 Overall, I would consider nom for future projects that involve parsing data. The
