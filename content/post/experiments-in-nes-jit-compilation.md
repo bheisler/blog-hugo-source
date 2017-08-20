@@ -1,10 +1,9 @@
 +++
-date = "2017-08-10T19:00:20-06:00"
+date = "2017-08-20T11:35:37-0600"
 title = "Experiments In NES JIT Compilation"
 categories = ["code"]
-draft = true
 tags = ["Rust","Assembly","NES","JIT","Emulator"]
-
+author = "Brook Heisler"
 +++
 
 Inspired by the always-incredible work on [Dolphin](https://dolphin-emu.org/),
