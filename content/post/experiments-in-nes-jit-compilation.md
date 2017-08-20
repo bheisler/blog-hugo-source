@@ -119,23 +119,24 @@ If the dispatcher doesn't have an existing generated code block for a particular
 location in ROM, the [nes_analyst module](https://github.com/bheisler/Corrosion/blob/develop/src/cpu/nes_analyst.rs)
 is used to collect information about the code to be compiled. The primary
 responsibility of nes_analyst is to determine where the end of the current
-function is. Including this logic in the compiler module itself would
-further increase the complexity of that code, so it's done as a separate pass.
+function is and collect information about the instructions it contains.
 This is done using a very simplistic algorithm that I copied from Dolphin. It
 decodes instructions until it finds the first unconditional exit point (eg.
 returns, jumps or calls to other functions). To ignore the conditional exit
 points, it tracks the target address of the farthest forward-facing branch it's
 seen; any exit point before that is conditional. This approach does occasionally
 overestimate the length of the actual function, but it's simple and fast.
-The nes_analyst module is also responsible for indentifying which instructions
+The nes_analyst module is also responsible for identifying which instructions
 are the targets of branches and which instructions change or use which processor
-flags, which is used later in the compilation process. The code for the
-nes_analyst is somewhat cluttered as a side effect of using the `decode_opcode!`
-macro which is designed for the CPU interpreter, but it's still understandable.
+flags, which is used later in the compilation process. Decoding opcodes is done
+using the `decode_opcode!` macro which expands to a giant match structure that
+calls the appropriate functions. `decode_opcode!` has handling for the various
+addressing modes which we don't really need here, so there is some clutter,
+but it works well enough.
 
 As mentioned earlier, Corrosion doesn't have a register allocator. It's quite
 common for emulated CPU's to have more registers than the host CPU, especially
-since many JIT compilers compile to the relatively register-light x86
+since many JIT compilers run on the relatively register-light x86
 and x64 instruction sets. As a result, they need to do the extra step of
 determining which emulated registers should be represented by host registers
 and which should be stored in memory at any given point in the code. Conveniently,
@@ -148,7 +149,7 @@ scratch memory.
 Most 6502 instructions come in various different flavors called addressing modes,
 which control where they take some of their data from. Take the CPX (ComPare X)
 instruction as an example. This instruction compares the value in the X register
-to a one-byte operand, setting the N (negative), Z (zero), and C (carry) flags.
+to a one-byte operand, setting the N (sign), Z (zero), and C (carry) flags.
 If the opcode is 0xE0, the operand is a one-byte immediate value stored
 right after the opcode. If the opcode is 0xE4, the next byte is instead 
 zero-extended to 16 bits and used as an address into RAM. This mode is called
@@ -172,13 +173,26 @@ appropriate location in memory. It's slightly less efficient at runtime because
 I have to move data through an intermediate register instead of using it
 directly, but it saved a lot of my time.
 
-With the addressing modes implemented, adding the instructions themselves
-was surprisingly easy; essentially just translating the Rust code from my
-interpreter into assembly instructions by hand. I'm not actually that good with
+Slight aside - I was a bit surprised by how small the difference is between
+writing code to implement something and writing code that generates a program
+to implement something. I'll use CPX as an example again - this is some code
+from an earlier version of the JIT:
+
+{{< gist bheisler eebebbacefda3c626f597a6c865805dd >}}
+
+If I were actually writing this in assembly, this reads like pretty much how
+I'd do it - call the function for the appropriate addressing mode to load the
+operand, do some branching to set or clear the carry flag, compare the operand
+against the X register and call some functions to update the sign and zero
+flags. In fact, that's exactly how the interpreter handles this instruction.
+Instead, I'm calling a function to generate the code to load the operand,
+generating code to do the comparison and update the flags, etc. Despite that
+extra layer of indirection, though, it reads pretty much the same. Because
+of this, implementing all of the instructions was as straightforward as
+translating my Rust code into assembly. I'm not actually that good with
 assembly, so my code will probably make experienced assembly programmers cry.
-Still, it does the job. With that said, I would be interested in ideas for making
-it better if anyone would care to share links or suggestions. I swear I'll get
-around to reading Agner Fog someday.
+Still, it does the job. With that said, I would be interested in ideas for
+making it better if anyone would care to share links or suggestions.
 
 ## Enhancements
 
@@ -211,14 +225,15 @@ when it hits an instruction that uses a flag, it looks up the InstructionAnalysi
 structure for the last instruction to set the flag, which contains a set of
 booleans indicating whether each flag will be used. Since we now know that that
 instruction's flag will be used and not overwritten, we set the appropriate
-boolean to true, signaling the JIT compiler to emit that flag later on.
+boolean to true, signaling the JIT compiler to emit code to update that flag
+later on.
 
 There are a few pitfalls with this approach. For instance, if a branch is taken
 or if execution hits a jump instruction, we can't know if the code it jumps to
 will rely on this flag. If so, this optimization could break. A more
 sophisticated analysis could probably detect that, for at least some cases.
-This one-pass algorithm can't, so to be on the safe side it simply assumes that
-jump and branch instructions use all of the flags. Likewise, when an interrupt
+This one-pass algorithm can't, so to be on the safe side it assumes that jump
+and branch instructions use all of the flags. Likewise, when an interrupt
 occurs, the NES pushes the flags and the return address on the stack. Since an
 interrupt can occur at any time, there's no way to be sure that the flags byte
 it pushes on the stack will be correct. I don't have a solution to this except
@@ -242,7 +257,7 @@ instruction cache, which could reduce performance.
 
 Instead, I've changed it to use a trampoline; this is an ordinary Rust function
 taking the pointer to the compiled code to jump to as well as the pointers to
-the CPU structure and the RAM array. It contains an `asm!` call which defines
+the CPU structure and the RAM array. It contains an `asm!` macro which defines
 the assembly instructions to load the registers from memory, call the compiled
 block and then store the updated registers back into memory. Since we now only
 have one global 'prologue/epilogue' shared between all compiled code blocks, we
@@ -380,8 +395,8 @@ I hope you found it interesting and/or educational. I'll leave you with some
 links to other resources that I used or wish that I'd known about when I was
 building this thing.
 
-First off, Eli Bendersky's Adventures In JIT Compilation series (
-[Part 1](http://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-1-an-interpreter/),
+First off, Eli Bendersky's Adventures In JIT Compilation series 
+([Part 1](http://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-1-an-interpreter/),
 [Part 2](http://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-2-an-x64-jit/),
 [Part 3](http://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-3-llvm/),
 [Part 4](http://eli.thegreenplace.net/2017/adventures-in-jit-compilation-part-4-in-python/))
@@ -396,6 +411,15 @@ detailed explanation of how Tarmac works. Sharp gives a good explanation (often
 including diagrams and/or examples) of common approaches to various problems in
 emulation, even if Tarmac itself doesn't use them. If nothing else, read it to
 learn about terminology you can plug into a search engine to find out more.
+
+If you're interested in NES emulation in particular, [the NESdev wiki](
+    http://wiki.nesdev.com/w/index.php/Nesdev_Wiki
+) is the premiere source of information for aspiring emulator developers and 
+homebrew ROM authors. This wiki and the resources it links to (including 
+[the forums](http://forums.nesdev.com/), 
+[test ROMs](https://wiki.nesdev.com/w/index.php/Emulator_tests), and lots
+of documentation about the CPU/PPU/APU) provided all of the documentation I used
+to build this emulator in the first place.
 
 Finally, Dolphin's JIT doesn't seem to have much documentation, so if you want
 to find out more about it there are only two sources that I've found useful.
