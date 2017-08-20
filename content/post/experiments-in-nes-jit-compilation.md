@@ -1,5 +1,5 @@
 +++
-date = "2017-08-20T11:35:37-0600"
+date = "2017-08-20T11:35:37-06:00"
 title = "Experiments In NES JIT Compilation"
 categories = ["code"]
 tags = ["Rust","Assembly","NES","JIT","Emulator"]
