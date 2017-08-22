@@ -1,7 +1,6 @@
 +++
 title = "About Me"
 description = ""
-date = "2017-04-25T14:29:02-06:00"
 +++
 
 Hello! I'm Brook Heisler. I'm a software developer from Saskatoon. When I'm not
@@ -12,3 +11,6 @@ information on my code projects, as well as whatever else I feel like writing
 about. If you're only interested in one of those two things, that's cool - use
 the category links above to focus on only code or only props. There are even
 separate RSS feeds. Cheers!
+
+[Github Profile](https://github.com/bheisler)
+[LinkedIn Profile](https://www.linkedin.com/in/brook-heisler-805597124/)

@@ -13,7 +13,6 @@ images = [
 I started working on this last fall, but didn't have time to do much before
 winter set in. RWBY is what originally got me into propmaking, so it's good to
 get back to it. I've already made Yang's Ember Celica shotgauntlets and Adam's
-#TODO: insert pics
 Wilt & Blush Sword/Shotgun Combo. This time around, I'm going to be building one
 of Penny's swords, which unfortunately don't have a cool name yet. This is the
 first time I'm documenting my process, and I'm going to be experimenting with
@@ -21,8 +20,6 @@ a bunch of new tools and techniques this time (including electronics to make
 it light up).
 
 ## Blueprints & Design
-
-#TODO: Include something about the actual blueprints, maybe?
 
 First, a quick overview of how I intend to build this. Hopefully at least some
 parts of this plan will survive contact with reality. The plan is to make the
@@ -42,6 +39,11 @@ wooden dowel with a spokeshave and make the extra details out of styrene. If
 that doesn't work, I'll probably end up 3D printing, molding and casting it
 instead.
 
+As usual, I started by finding reference material and tracing out some blueprints
+in Inkscape. Reference material for RWBY is usually pretty easy to find, since
+Rooster Teeth often releases detailed turnaround shots of the characters and
+their gear for exactly this purpose.
+
 ## Blade
 
 This is the part I did last fall. I took a big block of 1/2 inch MDF to my [local
@@ -60,7 +62,7 @@ the pieces together. This turned out to be a mistake. In my haste to get
 everything together before the epoxy started to set, I didn't line up the two
 parts properly. They're not even close.
 
-#TODO: Insert shame pic(s)
+{{< figure src="/static/pennys-sword-shame.jpg" caption="Those lines should line up." >}}
 
 D'oh. Shortly afterwards I also realized that the grooves I'd cut to hold the
 acrylic light diffuser and EL wire are only 2-3mm deep - much too shallow to
@@ -93,18 +95,49 @@ one end of the file in each hand, press the center against the work and push
 it forward and draw it back. I've found this technique to be much faster and
 more controllable than filing along the length of the file using a sawing motion.
 
+{{< figure src="/static/pennys-sword-half-blade.jpg" >}}
+
 Once that was done, I spread some Bondo on some of the areas where I'd filed too
 far and sealed the MDF with cyanoacrylate. I generally recommend thin CA for this,
 as it soaks deeper into the MDF, but my bottle of thin CA is so old that it's
 turned into thick CA all on its own. Have to get some more of that. Regardless
-of the viscosity though, when the CA hardens you're left with a rough, but hard
+of the viscosity though, when the CA hardens you're left with a rough but hard
 and nicely sandable surface which won't soak up paint the way unsealed MDF does.
 I suspect it would even be wet-sandable, but I've never tried that myself.
 
 With that, plus some more sanding and spot-putty work, the blade is ready for
 primer.
 
+TODO: Insert image of primed blade
+
 ## Blade Details
+
+To make the round decoration along the spine of the blade, I cut a piece of 1/2
+inch dowel down the middle very carefully on my scroll saw, then cleaned it up
+by rubbing the flat side of the now-half-round dowel along a file. I glued that
+down as straight as I could manage and cleaned up the seam as best I could with
+filler primer, files and sanding twigs. For the larger half-cylindro-spherical
+(yeah, I had to look that up) bit at the end, I cut a piece of 3/4 inch dowel
+in half and cleaned it up as before, then used a sanding drum on my ancient
+rotary tool to sculpt the half-sphere part. This actually worked remarkably
+well. I couldn't get it to be quite round enough with just the rotary tool, but
+some work with a sanding sponge and filler primer got it close enough. The inner
+corners between the two parts and the spine of the blade are hard to reach so
+they're not as clean as I'd like, but they're probably good enough.
+
+There are some additional details on either side of the blade, but those will
+have to wait. Those details are on top of the lens for the glowy sections on
+the side, which poses an order-of-operations problem. I have to install the EL
+wire and the lens before I can add those details, and then I have to paint those
+detail bits and the rest of the blade after the lens is installed. So I'll have
+to mask out the lens and try not to get any paint on it. That's going to be fun.
+
+TODO: Insert image of spine decoration
+
+There is also an oblong piece on either side of the blade where it meets the
+guard. I intially tried cutting these out on my scroll saw and sanding them to
+the right shape, but I couldn't quite get it right so I ended up just
+laser-cutting them at the makerspace instead.
 
 ## Guard
 
@@ -117,27 +150,81 @@ much experience on the CNC mill at my local makerspace, and I'm proud to say
 that I've added a number of shining new mistakes to that experience which I
 hope to not repeat.
 
-Because this part needs to be cut on both sides, I need to be able to flip over
-the work piece without actually moving it relative to the bed of the CNC machine.
-In my case, this means drilling a couple of holes through the material into the
-sacrificial board on the bed of the machine, into which I can place pieces of
-dowel. In theory, I can then flip the material over, make sure the dowels are
-seated in their holes in the sacrificial board, and then carry on cutting on
-the other side. In practice, the fact that I have to use standard drill bits
-combined with the much higher RPMs of the router meant that this operation caused
-nasty tearout. I can probably solve this by adding another piece of sacrificial
-material on top of the workpiece.
+Because this part needs to be cut on both sides, I needed to be able to flip
+over the work piece without actually moving it relative to the bed of the CNC
+machine. In my case, this means drilling a couple of holes through the material
+into the sacrificial board on the bed of the machine, into which I can place
+pieces of dowel. In theory, I could then flip the material over, make sure the
+dowels are seated in their holes in the sacrificial board, and then carry on
+cutting on the other side. In practice, the fact that I had to use standard
+drill bits combined with the much higher RPMs of the router meant that this
+operation caused nasty tearout. I could probably have solved this by adding
+another piece of sacrificial material on top of the workpiece.
 
-Another problem is the fact that this CNC machine doesn't have any sort of
-tool-changing device, so I have to manually change tools and adjust the zero
-after every operation. That wouldn't be so much of a problem except it's easy to
-accidentally reset the zero for the wrong axis part way through the process,
-rendering it impossible to finish. Which is what I did the first time I tried
-cutting the guard. The second time, my work piece came loose and I was informed
-that I had the movement speed of the CNC router set far too high. Since this CNC
-machine is someone's home-brew DIY project, it's somewhat lacking in documentation.
-Fortunately nothing was damaged except my MDF.
+This CNC machine doesn't have a tool-changer, so I had to manually replace the
+tool multiple times during the cut. That wouldn't be so much of a problem
+except it's easy to accidentally reset the zero for the wrong axis part way
+through the process, rendering it impossible to finish. Which is what I did the
+first time I tried cutting the guard. The second time, my work piece came loose
+and I was informed that I had the movement speed of the CNC router set far too
+high. Since this CNC machine is someone's home-brew DIY project, it's somewhat
+lacking in documentation. Fortunately nothing was damaged except my MDF.
 
 This is about when I decided that maybe it'd be easier to just print it instead.
+This actually worked, which is nice. It took a lot of sanding, puttying, priming
+and repeating before it looked smooth enough, but I did get there in the end. It
+even printed in the 1/4 inch holes on either end to attach it to the rod inside
+the blade, though I did have to use a 1/4 inch rat tail file to open them up a
+bit.
+
+TODO: Insert image of the guard ring
+
+The guard also has some other parts. First, some flat segments to turn the ring
+into a complete guard, which I laser-cut from acrylic and then finessed a bit
+with my files until they fit into the ring. Second, there are some sections
+that are raise above the center of the guard and have a power-symbol design that
+lights up. Those were also laser-cut from MDF and acrylic. All of these small
+MDF pieces were filleted with a sanding sponge, sealed with CA and primed.
 
 ## Hilt
+
+Compared to all of this, the hilt was actually quite easy. I cut a couple of
+sections of dowel to about twice the necessary length and took them to the
+makerspace. After some failed experiments with the drill press, I asked a couple
+of the guys there to help me with using the lathe to drill along the center of
+the dowel. I'll be honest - they did the work for me (thanks Al and Scott!).
+Then I just cut the oversized dowel in half and had two hilt-sized bits of wood
+which fit nicely on the 1/4 inch rod extending from the blade. One real one and
+a backup in case I messed up the first one. Helpful tip - always make spares.
+More often than not, you'll end up needing them.
+
+I'd originally planned to try to use a spokeshave to cut the round dowel, but
+the spokeshave was too dull to cut with when it arrived. Learning how to
+sharpen blades is another one of those skills I really ought to learn sometime.
+For now, though, I just clamped the dowel down in my vice and went at it with
+my files and a sanding sponge. I've yet to find a more versatile tool than my
+cheap set of hand files from Home Depot.
+
+The hilt has a raised section on either end. Initially, I thought I'd heat up
+some 1mm styrene, wrap it around and glue it in place. This didn't work
+(probably because I was trying to use a hair dryer and hot water. Maybe a heat
+gun would have worked). After puzzling about it for a while, I came up with a
+better idea. I cut a strip of thinner styrene which was flexible on its own.
+Then I wrapped that around the hilt multiple times, using styrene cement to
+glue each layer to the one beneath it like a roll of tape. This left an edge
+where the styrene strip ended, but some filing and sanding blended that in
+nicely. The styrene cement bonded the styrene to itself but not to the wood, so
+I mixed a bit of epoxy and glued the two styrene end-caps to the dowel.
+
+This all worked pretty well, but the two end-caps weren't quite flush with the
+sides of the hilt. I fixed that by scooping some baking soda into the gaps,
+tapping it a bit to get it inside, and then scraping away the excess. With the
+baking soda filling the gap, I dripped some thin CA (by this point I'd bought
+a new bottle) inside. Baking soda causes CA to harden instantly and take up
+more space than CA normally does, so this filled in the gaps nicely. A bit more
+work with some needle files and sanding twigs to clean up the excess and it was
+ready to go.
+
+TODO: Insert image of hilt
+
+TODO: Write conclusion and show glued-together blade.
