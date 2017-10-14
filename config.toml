@@ -20,10 +20,10 @@ category = "categories"
     identifier = "code"
     url = "/categories/code/"
 
-#[[menu.main]]
-#    name = "Props"
-#    identifier = "props"
-#    url = "/categories/props/"
+[[menu.main]]
+    name = "Props"
+    identifier = "props"
+    url = "/categories/props/"
 
 [[menu.main]]
     name = "About"
