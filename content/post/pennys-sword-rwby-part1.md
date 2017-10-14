@@ -9,8 +9,8 @@ images = [
 ]
 +++
 
-In this post, I'll show you how I built a light-up replica of Penny
-Pollendina's unnamed swords from Rooster Teeth's excellent animated web show
+In this post, I'll show you how I built a light-up replica of Penny Polendina's
+unnamed swords from Rooster Teeth's excellent animated web show
 [RWBY](http://www.roosterteeth.com/show/rwby). RWBY is what originally got me
 into propmaking - I've already made Yang's Ember Celica shotgauntlets and
 Adam's Wilt & Blush Sword/Shotgun Combo. This is the first time I've documented
