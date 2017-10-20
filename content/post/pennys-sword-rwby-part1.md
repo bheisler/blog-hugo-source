@@ -7,6 +7,7 @@ description = ""
 images = [
         "https://bheisler.github.io/static/pennys-sword-parts.jpg"
 ]
+next = "/post/pennys-sword-rwby-part2/"
 +++
 
 In this post, I'll show you how I built a light-up replica of Penny Polendina's
@@ -224,7 +225,7 @@ go.
 ## Conclusion
 
 This is getting quite long, so I'm going to wrap up here. Almost all of the
-parts are shaped, refined and primed. In part 2, I'll explain how I painted,
+parts are shaped, refined and primed. In [part 2](/post/pennys-sword-rwby-part2), I'll explain how I painted,
 wired and finished the sword.
 
 Here's what all of the pieces look like so far:

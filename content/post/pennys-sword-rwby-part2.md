@@ -7,7 +7,6 @@ description = ""
 images = [
         "https://bheisler.github.io/static/pennys-sword-finished.jpg"
 ]
-draft = true
 prev = "/post/pennys-sword-rwby-part1/"
 +++
 
