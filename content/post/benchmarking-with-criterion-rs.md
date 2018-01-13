@@ -1,10 +1,9 @@
 +++
-date = "2018-01-12T16:00:00-06:00"
+date = "2018-01-12T19:00:00-06:00"
 description = ""
 title = "Benchmarking In Stable Rust With Criterion.rs"
 tags = ["Rust", "Benchmarking", "Criterion.rs"]
 categories = ["code"]
-draft = true
 +++
 
 When I initially announced the release of Criterion.rs, I didn't expect that
