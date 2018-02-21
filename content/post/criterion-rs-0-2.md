@@ -4,7 +4,6 @@ description = ""
 title = "Criterion.rs v0.2 - HTML, Throughput Measurements, API Changes"
 tags = ["Rust", "Benchmarking", "Criterion.rs"]
 categories = ["code"]
-draft = true
 +++
 
 I'm pleased to announce the release of Criterion.rs v0.2, available today. Version 0.2 provides a
