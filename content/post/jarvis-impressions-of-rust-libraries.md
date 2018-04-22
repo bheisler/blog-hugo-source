@@ -1,12 +1,13 @@
 +++
-date = ""
+date = "2018-04-22T16:00:00-06:00"
 title = "JARVIS - Notes on Rust Crates From Writing an RSS Reader"
 tags = ["Rust", "JARVIS"]
 categories = ["code"]
+author = "Brook Heisler"
 +++
 
 Way back in the dim mists of history (back in university) I wrote myself a
-custom RSS reader in Java and called in JARVIS[^jarvis]. You see, I read a lot of
+custom RSS reader in Java and called it JARVIS[^jarvis]. You see, I read a lot of
 webcomics. Like, a lot. Some webcomics provide RSS feeds, but some don't, and
 as my collection grew it started to become a hassle to use Firefox's live
 bookmarks to manage it all. Ultimately, I wrote up a quick Swing GUI to use as
@@ -59,7 +60,7 @@ seven-hour marathon sessions.
 ## Basic JSON API
 
 I didn't originally expect this to be difficult. "You just connect serde and
-`GSON` to stdin/out" I thought "That seems pretty simple". Famous last words.
+GSON to stdin/out" I thought "That seems pretty simple". Famous last words.
 I ran into two major problems doing that. First, both `GSON` and `serde_json`
 expected that there would be no more data after the end of the first record,
 which wasn't true in this case. Second, I ran into deadlocks aplenty.
@@ -146,7 +147,7 @@ and take advantage of whatever parallelism I could get. I thought sqlite would
 lock the database during writes and that the other threads would block until it
 was unlocked, then proceed. Instead, all other transactions simply failed while
 the database was locked. Of course, I could write my own retry logic, but it's
-surprising that I would have to. In the end, I just settled for just using a
+surprising that I would have to. In the end, I settled for just using a
 single database thread; it's plenty fast enough for my needs.
 
 One last thing - I love that `diesel` directs the programmer to use database
@@ -285,7 +286,7 @@ finding the 'next-page' links can only take one so far. This is why JARVIS
 allows the user to override the heuristics and provide a CSS selector string
 that matches the appropriate link. Unfortunately, `scraper` does not provide
 some of the useful extensions to CSS selectors that `JSoup` does - such as the
-`:has(selector)` construction which selects parent nodes that contain child
+`:has(selector)` construction which selects parent nodes that contain descendant
 nodes matching the nested selector. The programmer could provide it, but then
 we're back to either hard-coded selection behavior or implementing my own extra
 parsing.
