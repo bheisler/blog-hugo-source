@@ -373,3 +373,6 @@ then, I hope you've enjoyed reading.
 
 As before, if you want to try playing around with the code yourself, you can
 check out the [GitHub Repository](https://github.com/bheisler/raytracer).
+
+Edit from the future: You may be interested in my next series on [Writing a GPU-accelerated Path
+Tracer in Rust](/post/writing-gpu-accelerated-path-tracer-part-1/).
