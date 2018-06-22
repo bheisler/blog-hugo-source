@@ -1,10 +1,9 @@
 +++
-date = "2019-01-22T16:00:00-06:00"
+date = "2018-06-21T19:00:00-06:00"
 title = "Writing a GPU-Accelerated Path Tracer in Rust - Part 1"
 tags = ["Rust", "GPGPU", "Raytracer", "Pathtracer"]
 categories = ["code"]
 author = "Brook Heisler"
-draft = true
 images = [
     "https://bheisler.github.io/static/path_tracer_green_teapot.png"
 ]
@@ -87,9 +86,10 @@ for (int k = 1; k < polygon.length - 1; k++) {
 }
 ```
 
-For generating prime rays, I re-used the prime ray code from the old raytracer. I simplified it
-slightly, but you could just copy the old code. This is one reason why it's handy to use Rust for
-the GPU kernel - I can re-use old Rust code without having to rewrite it in C.
+Now that we have triangles, we need rays and a way to intersect those rays against the triangles.
+To start with, we only need prime rays (the initial rays traced from the camera out). I just copied
+the prime-ray generation code from the old raytracer. This is an advantage to writing the path tracer
+in pure Rust rather than CUDA C - I can reuse existing Rust code without needing to rewrite it.
 
 ## Ray-Triangle Intersection Test
 
@@ -276,51 +276,65 @@ seen from above!
 Using triangle meshes raises another consideration. We defined spheres with a center point and
 size; for planes we provided a point and a normal vector. How do we place a mesh within the scene?
 We can move a mesh by adding a constant to each component of each vertex - but how do we scale or
-rotate a mesh?
+rotate a mesh? We use matrices - specifically, 4x3 (or sometimes 4x4) matrices.
 
-This article is getting quite long already so I'll skip over the mathematical detail. In short
-we construct an object-to-world matrix and multiply it against the vertex vectors.
+This article is getting quite long already, so I'll just lay down some basics (again, assuming that
+you know what matrices and vectors are). It's easiest to describe this in software terms, so think
+of a 4x3 matrix as a function which takes a 3D vector and returns a transformed 3D vector. I won't
+go into too much detail (see links below for that), but it's possible to construct a matrix that
+performs the `translation` function - ie. it adds a value to each component of the vector.
+Likewise, there are matrices that will scale a vector or rotate it around the X/Y/Z axes.
 
-Think of a matrix as a function and matrix-vector multiplication as applying that function to the
-vector. Matrix-matrix multiplication is function-composition. The identity matrix performs the
-identity function - returns the input vector unmodified. You can construct matrices that perform
-the translation function (add a fixed value to each component of the input vector), scaling
-(multiply each component of the input vector by some amount) and rotation about one of the three
-axes (this involves some trigonometry). We can then compose the functions together - for example,
-scale by 3/5, then rotate about the X axis by 90 degrees, then translate down by one unit - to get
-the object-to-world matrix.
+Those familiar with functional programming will know how you can package up a function, pass it
+around, combine it with other functions and ultimately apply it to some input to get some output.
+The same is true for these function-matrices (or really, any matrix). We apply a matrix to a vector
+by computing the matrix-vector multiplication, which produces a new vector. We can compose function
+matrices by multiplying the two matrices together to produce a new matrix which performs the
+function of both.
 
-The biggest trick here is that the order of function composition - does this matrix
-translate-then-rotate or rotate-then-translate - is important. Depending on how you implement
-your matrix-multiply function, the function composition might go right-to-left or left-to-right.
-It's important to know which one you're using when you construct the object-to-world matrix.
-This multiply-function makes it so that matrices compose right-to-left, which is the normal
-convention:
+To position an object in the world we construct a matrix/function that converts the vertex
+positions of the input object to some new vertex positions representing where we want the object to
+be in the world. More formally, this matrix converts from the object's coordinate space to the
+world's coordinate space - and this is why these matrices are typically called object-to-world
+matrices. Once we define the object-to-world matrix, we can apply it to (multiply it with) the
+vectors that make up the polygons of the object, producing new vertices which position the polygons
+in the right place in the world.
+
+Now, you could write the object-to-world matrix by hand, but just as with software it's easier to
+define building-blocks (eg. code to create translation or scaling matrices). We can then compose
+the functions together - for example, scale by 3/5, then rotate about the X axis by 90 degrees,
+then translate down by one unit - to get the object-to-world matrix.
+
+Just like with function composition, it's important to be aware of the order in which the functions
+will be applied - `f(g(x))` is not necessary the same as `g(f(x))`, and `translate(0.0, 0.0,
+1.0).multiply(scale(0.6))` is not the same as `scale(0.6).multiply(translate(0.0, 0.0, 1.0)`.
+Depending on how you implement your matrix-multiply function, the function composition might go
+right-to-left (ie. the right-most operation is applied first) or left-to-right. It's important to
+know which one you're using when you construct the object-to-world matrix. This matrix-multiply
+code makes it so that matrices compose right-to-left, which is the normal convention:
 
 {{< gist bheisler 01ff742ff63a0681611fda60e44f3f9e >}}
 
 We then multiply the matrix against every vertex of every triangle and collect the new vectors into
-new triangles which represent the position of the object in the world.
-
-Readers familiar with linear algebra might wonder how you can multiply a 4x4 matrix against a 3x1
-vector. This has to do with the difference between a vectors, normals and points in space. For our
-purposes, we only need to care about points in space. For that we ignore the bottom row of the
-matrix (which is almost always [0, 0, 0, 1] anyway), resulting in a 4x3 matrix multiplied by a 3x1
-vector. You might see this described as adding a fourth component with value 1.0 to the end of the
-vector and discarding it later, but it amounts to the same thing. To transform vectors we ignore
-the right-most column (which holds translation values and doesn't make sense for vectors with no
-position) and get a 3x4 matrix against a 1x3 vector - again, valid. For normals, things are more
-complicated, but for working with polygons we don't need to worry about transforming the normals.
-We can compute the normals from the transformed polygons. This doesn't work for everything though.
+new triangles which represent the new position of the object in the world. As a side note - I
+didn't cover this in my last series (and it won't be needed in this one either) but you can use
+this technique to position the camera in the world as well. Apply the matrix to the origin and
+direction of the prime rays. Be aware that applying a matrix to a point in space is not the same as
+applying it to a direction vector - see the links below for more detail.
 
 If you're interested in the theory behind this, I recommend 3Blue1Brown's [excellent series on
 linear algebra](https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab). It
-coversthe concept of matrices-as-functions with more depth and clarity than I could manage. Also
+covers the concept of matrices-as-functions with more depth and clarity than I could manage. Also
 check out [Scratchapixel's articles on
 Geometry](https://www.scratchapixel.com/lessons/mathematics-physics-for-computer-graphics/geometry),
 which I used when I wrote this matrix-math code for my last raytracer.
 
 ## Conclusion
 
-We have some building blocks and a rudimentary GPU-accelerated raytracer. In the next post, we'll
-develop this into a true path-tracer and implement reflective and refractive surfaces.
+We have some building blocks and a rudimentary GPU-accelerated raytracer. As usual, check out [the
+code on
+GitHub](https://github.com/bheisler/pathtracer/tree/68027ce487229fe5de82ff81f5140300dfe827c7) and
+stay tuned for the next post, where we'll turn this into a true path-tracer and add support for
+refractive and reflective surfaces.
+
+Thanks to Daniel Hogan for beta-reading this article and offering helpful comments.
