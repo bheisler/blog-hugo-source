@@ -198,7 +198,7 @@ render pretty pictures, so I'm just going to wing it.
 You can use any pseudo-random number generator you like. I'm I'm going with an
 [xorshift](https://en.wikipedia.org/wiki/Xorshift#xorshift) generator because it's small (both in
 terms of code and memory) and because it's fast. This generates a 32-bit unsigned integer as
-output. We need a floating-point value in the range [0.0-1.0]. We could simply divide by the
+output. We need a floating-point value in the range [0.0, 1.0). We could simply divide by the
 maximum value of a u32. Or, we could do some [evil floating-point bit-level
 hacking](https://en.wikipedia.org/wiki/Fast_inverse_square_root#Overview_of_the_code) to make it go
 faster. I know which one I'm going with!
@@ -219,9 +219,9 @@ think the extra performance is actually worth it. Additionally, this algorithm w
 [this blog post.](
 https://xor0110.wordpress.com/2010/09/24/how-to-generate-floating-point-random-numbers-efficiently/)
 
-Anyway, we know the right window for our numbers - [0.0 to 1.0]. However, it's easiest to do this
+Anyway, we know the right window for our numbers - [0.0, 1.0). However, it's easiest to do this
 if we select the window of the right width to start with, so I'll go with generating a number in
-the range of [1.0 to 2.0] and then subtract 1.0 from it afterwards. This also allows us to ignore
+the range of [1.0, 2.0) and then subtract 1.0 from it afterwards. This also allows us to ignore
 some extra complexity that comes with values close to zero.
 
 For IEEE single-precision floating points, this gives us a fixed bit pattern for the first 9 bits,
@@ -245,8 +245,8 @@ fn random_float(seed: &mut u32) -> f32 {
 
 Some quick testing confirms that the output is at least approximately uniform, so it's probably
 good enough for our purposes. One neat thing about this trick is that it's customizable; if you
-want numbers in the range [-1.0, 1.0] you can use 0x40000000 instead of 0x3F800000 to select the
-exponent for the [2.0, 4.0] range and then subtract 3.0.
+want numbers in the range [-1.0, 1.0) you can use 0x40000000 instead of 0x3F800000 to select the
+exponent for the [2.0, 4.0) range and then subtract 3.0.
 
 ## Putting it All Together
 
