@@ -12,7 +12,7 @@ images = [
 Well, it's that time again. This is the start of a second series of articles on raytracing in Rust
 following on from [my previous series](/post/writing-raytracer-in-rust-part-1/). This time, I'll be
 doing all of the rendering on a GPU using Accel - see [my previous post on
-Accel](/post/rust-on-the-gpu-with-accel.md). I thought this would be a good project for learning
+Accel](/post/rust-on-the-gpu-with-accel/). I thought this would be a good project for learning
 about GPU programming, see.
 
 Second, this time I want to write a path tracer, rather than a raytracer.
