@@ -6,6 +6,8 @@ categories = ["code"]
 author = "Brook Heisler"
 +++
 
+NOTE: Much of what I discuss below is no longer accurate.
+
 For the past month or so, I've been working on a follow-up to my series on [Writing a Raytracer in
 Rust](/post/writing-raytracer-in-rust-part-1/). This time around, I'll be talking about writing a
 GPU-accelerated Path Tracer. As always, I'm writing it in Rust - including the GPU kernel code.
