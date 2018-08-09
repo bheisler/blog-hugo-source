@@ -1,11 +1,9 @@
 +++
-date = "2020-01-01T01:00:00-06:00"
+date = "2018-08-08T20:00:00-06:00"
 description = ""
 title = "The State of GPGPU in Rust"
 tags = ["Rust", "GPGPU"]
 categories = ["code"]
-
-draft = true
 +++
 
 At work a few months ago, we started experimenting with GPU-acceleration. My boss asked if I was
@@ -16,11 +14,11 @@ me that CUDA support in Rust is pretty poor. If our experiments ever turn into a
 would have to recommend we write the GPU code in C.
 
 To spare myself and others that dreadful fate, I decided to work towards making Rust's GPGPU story
-as good as C's. The first step is to survey the landscape and see what's out there.
+as good as C's. The first step was to survey the landscape to see what's out there.
 
 ## OpenCL
 
-I started looking at OpenCL crates. I found two -
+I started by looking at OpenCL crates. I found two -
 [rust-opencl](https://github.com/luqmana/rust-opencl) and [ocl](https://crates.io/crates/ocl).
 `rust-opencl` is abandoned, so I'll focus on `ocl`.
 
@@ -75,7 +73,7 @@ focuses on neural networks. It was completely abandoned along with Leaf. A fork 
 [Parenchyma](https://github.com/jonysy/parenchyma) was created, which changed a lot of
 Collenchyma's API and claims to be under active development. There hasn't been a Git commit in six
 months. It's probably abandoned as well, and remaining users are unable to compile it on the latest
-nightly builds.
+nightly compiler builds.
 
 The other big one is [arrayfire-rust](https://github.com/arrayfire/arrayfire-rust), which is a Rust
 binding to ArrayFire. This is attached to ArrayFire LLC, so it has some corporate backing and
@@ -86,9 +84,9 @@ problem doesn't fit their model, then I think you're out of luck. I'm skeptical 
 portable across OpenCL, CUDA and CPUs. The performance characteristics of CPUs are so different
 from those of GPUs that it will be difficult to get optimal performance on both.
 
-ArrayFire in Rust is at least as good as ArrayFire in C, but that's about all I can say.
-Perhaps it's competitive with the [Thrust library](https://developer.NVIDIA.com/thrust) in C++.
-There is nothing similar to [OpenACC](https://developer.NVIDIA.com/openacc) yet.
+ArrayFire in Rust is at least as good as ArrayFire in C, but that's about all I can say. There is
+nothing similar to [Thrust](https://developer.NVIDIA.com/thrust) or
+[OpenACC](https://developer.NVIDIA.com/openacc) yet.
 
 ## Other Rust GPGPU Projects
 
@@ -119,7 +117,3 @@ Rust compiler team and contributing improvements to `rustc`, maybe even LLVM. As
 reports I've never done that before, and it would help to have a mentor. If you'd be willing to
 answer questions like "what would have to happen before NVPTX could be a Tier 2 backend" or "how do
 I get this build system to work on Windows", please send me an email or post a comment.
-
-Wait, what? Comments? Yup! I'm going to start posting a GitHub issue to collect comments.
-
-TODO: Actually do that.
