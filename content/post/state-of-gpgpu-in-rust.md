@@ -116,4 +116,6 @@ the same language is valuable, so that's what I'll start with. This will involve
 Rust compiler team and contributing improvements to `rustc`, maybe even LLVM. Aside from some bug
 reports I've never done that before, and it would help to have a mentor. If you'd be willing to
 answer questions like "what would have to happen before NVPTX could be a Tier 2 backend" or "how do
-I get this build system to work on Windows", please send me an email or post a comment.
+I get this build system to work on Windows", please send me an email or [post a comment](https://github.com/bheisler/blog-hugo-source/issues/1).
+
+[Comments](https://github.com/bheisler/blog-hugo-source/issues/1)
