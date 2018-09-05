@@ -349,7 +349,7 @@ With that, we've built a working (albeit very slow) path tracer. As always, feel
 [the code](https://github.com/bheisler/pathtracer/tree/95a6b885d9a9642661346f777a30d2502439a1a7) on
 GitHub.
 
-In the [next post]((/post/writing-gpu-accelerated-path-tracer-part-3/), we'll
+In the [next post](/post/writing-gpu-accelerated-path-tracer-part-3/), we'll
 take this slow path tracer and speed it up a great deal by adding an
 acceleration structure - a way of organizing the scene data such that we don't
 have to trace every ray against every polygon. I'll also do some other
