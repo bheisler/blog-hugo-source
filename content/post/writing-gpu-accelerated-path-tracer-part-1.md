@@ -334,7 +334,7 @@ which I used when I wrote this matrix-math code for my last raytracer.
 We have some building blocks and a rudimentary GPU-accelerated raytracer. As usual, check out [the
 code on
 GitHub](https://github.com/bheisler/pathtracer/tree/68027ce487229fe5de82ff81f5140300dfe827c7) and
-stay tuned for [the next post](/post/writing-raytracer-in-rust-part-2/), where we'll turn this into
+stay tuned for [the next post](/post/writing-gpu-accelerated-path-tracer-part-2/), where we'll turn this into
 a true path-tracer and add support for refractive and reflective surfaces.
 
 Thanks to Daniel Hogan for beta-reading this article and offering helpful comments.
