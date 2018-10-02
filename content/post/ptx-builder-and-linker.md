@@ -1,5 +1,5 @@
 +++
-date = "2018-08-08T20:00:00-06:00"
+date = "2018-10-01T19:00:00-06:00"
 description = ""
 title = "Porting My CUDA Path Tracer to ptx-builder/linker"
 tags = ["Rust", "GPGPU"]
