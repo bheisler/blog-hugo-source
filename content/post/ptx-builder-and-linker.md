@@ -6,7 +6,7 @@ tags = ["Rust", "GPGPU"]
 categories = ["code"]
 +++
 
-A bunch of stuff has happened since I published my post on [The State of GPGPU in Rust](/post/state-of-gpgpu-in-rust.md).
+A bunch of stuff has happened since I published my post on [The State of GPGPU in Rust](/post/state-of-gpgpu-in-rust).
 Most importantly, [Denys Zariaiev (@denzp)](https://github.com/denzp) released his work on a 
 [custom linker](https://github.com/denzp/rust-ptx-linker) for Rust CUDA kernels, and a 
 [build.rs helper crate](https://github.com/denzp/rust-ptx-builder) to make it easier to use.
@@ -17,7 +17,7 @@ that Accel was doing behind the scenes. In addition, the
 [compiler bug](https://github.com/rust-lang/rust/issues/38824) which prevented us from using current
 Rust builds has been resolved (again, thanks to @denzp. All glory to @denzp).
 
-I ported my [GPU Path Tracer](/post/writing-gpu-accelerated-path-tracer-part-1.md) code to this new
+I ported my [GPU Path Tracer](/post/writing-gpu-accelerated-path-tracer-part-1) code to this new
 system to check it out. I'll be clear - there are still enough pitfalls and limitations and 
 [compiler bugs](https://github.com/rust-lang/rust/issues/54115) that I would not yet recommend using
 Rust for production CUDA work. I think we now have a stable base to build on, though.
