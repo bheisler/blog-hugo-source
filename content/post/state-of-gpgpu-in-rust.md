@@ -9,7 +9,7 @@ categories = ["code"]
 At work a few months ago, we started experimenting with GPU-acceleration. My boss asked if I was
 interested. I didn't know anything about programming GPUs, so of course I said "Heck yes, I'm
 interested!". I needed to learn about GPUs in a hurry, and that led to my [GPU Path Tracer
-series](/post/writing-gpu-accelerated-path-tracer-part-1.md). That was a lot of fun, but it showed
+series](/post/writing-gpu-accelerated-path-tracer-part-1/). That was a lot of fun, but it showed
 me that CUDA support in Rust is pretty poor. If our experiments ever turn into an actual product, I
 would have to recommend we write the GPU code in C.
 

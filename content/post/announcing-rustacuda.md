@@ -1,12 +1,12 @@
 +++
-date = "2018-12-01T16:00:00-06:00"
+date = "2018-12-01T15:00:00-06:00"
 title = "Announcing RustaCUDA v0.1.0"
 description = ""
 tags = ["Rust", "CUDA", "RustaCUDA", "GPGPU"]
 categories = ["code"]
 +++
 
-In [my post on GPGPU in Rust](/post/state-of-gpgpu-in-rust.md), I declared that I intended to work
+In [my post on GPGPU in Rust](/post/state-of-gpgpu-in-rust/), I declared that I intended to work
 on improving the state of CUDA support in Rust. Since then, I've been mostly radio-silent. I'm
 pleased to announce that I _have_ actually been working on something, and I've finally published
 that something.
