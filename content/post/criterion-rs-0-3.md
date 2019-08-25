@@ -1,5 +1,5 @@
 +++
-date = "2019-08-17T14:00:00-06:00"
+date = "2019-08-25T10:30:00-06:00"
 description = ""
 title = "Criterion.rs v0.3 - Custom Measurements, Profiling Hooks, Custom Test Framework, API Changes"
 tags = ["Rust", "Benchmarking", "Criterion.rs"]
