@@ -9,13 +9,13 @@ draft = true
 
 At work recently, I found myself trying to explain the Work-Efficiency vs Step-Efficiency tradeoff
 to a coworker, but when I searched for online resources to help I couldn't find any that I liked,
-so I decided to take a shot at writing my own. I found this idea presented in a video lecture
-series on Youtube a while ago, but I have completely lost the link since I watched it. However,
-it's just as applicable to any form of parallel processing, from SIMD instructions running on a
-single CPU core up to massive clusters of thousands of computers. This is a short post explaining
-this tradeoff and some of the implications.
+so I decided to take a shot at writing my own. I found this idea presented in a [video lecture
+series](https://www.youtube.com/playlist?list=PLGvfHSgImk4aweyWlhBXNF6XISY3um82_) on Youtube a
+while ago. However, it's just as applicable to any form of parallel processing, from SIMD
+instructions running on a single CPU core up to massive clusters of thousands of computers. This is
+a short post explaining this tradeoff and some of the implications.
 
-== Work Efficiency vs Step Efficiency ==
+## Work Efficiency vs Step Efficiency
 
 To start with, lets define what those terms mean:
 
@@ -60,7 +60,7 @@ processor is available to execute Task 2 until Task 1 is done. If we had infinit
 the second reason would never happen - there is always a processor available for a task - so the
 wall-clock time would be determined by the data dependencies.
 
-== So... what? ==
+## So... what?
 
 Well, for the most part I use this as a mental model or a way to describe the performance
 characteristics of some code. It does have some practical implications though.
