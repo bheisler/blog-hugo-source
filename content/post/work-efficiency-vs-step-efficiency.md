@@ -10,10 +10,10 @@ draft = true
 At work recently, I found myself trying to explain the Work-Efficiency vs Step-Efficiency tradeoff
 to a coworker, but when I searched for online resources to help I couldn't find any that I liked,
 so I decided to take a shot at writing my own. I found this idea presented in a [video lecture
-series](https://www.youtube.com/playlist?list=PLGvfHSgImk4aweyWlhBXNF6XISY3um82_) on Youtube a
-while ago. However, it's just as applicable to any form of parallel processing, from SIMD
-instructions running on a single CPU core up to massive clusters of thousands of computers. This is
-a short post explaining this tradeoff and some of the implications.
+series](https://www.youtube.com/playlist?list=PLGvfHSgImk4aweyWlhBXNF6XISY3um82_) about programming
+for GPGPUs on Youtube a while ago. However, it's just as applicable to any form of parallel
+processing, from SIMD instructions running on a single CPU core up to massive clusters of thousands
+of computers. This is a short post explaining this tradeoff and some of the implications.
 
 ## Work Efficiency vs Step Efficiency
 
