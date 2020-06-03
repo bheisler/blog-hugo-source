@@ -32,20 +32,20 @@ general Throughput vs Latency tradeoff.
 
 As an example, lets consider the problem of summing a large array of numbers.
 
-The maximally work-efficient algorithm is a simple sequential sum - add the first and second
-numbers, then add the sum to the third, and then the fourth, and so on until you reach the end of
-the array. There's no way that we can further reduce the work here - we must read and add every
-element to the sum, the overhead is as low as it could possibly be. However, this could still be
-slow - the user must wait for one CPU core to grind through all N array elements by itself, which
-means the wall-clock time could be long.
+The most work-efficient algorithm is a simple sequential sum - add the first and second numbers,
+then add the sum to the third, and then the fourth, and so on until you reach the end of the array.
+There's no way that we can further reduce the work here - we must read and add every element to the
+sum, the overhead is as low as it could possibly be. However, this could still be slow - the user
+must wait for one CPU core to grind through all N array elements by itself, which means the
+wall-clock time could be long.
 
-Another algorithm would be to add the first and second numbers together on one core, the third
-and fourth on a second core, and so on, saving the results into a new array which is half the size
-as the old. Then, we could repeat the reduction on the new array until ultimately we arrived at a
-single sum. Of course, we could also give more than two elements to each core. This algorithm is
-highly step-efficient - the wall-clock time is proportional to log2(N). However, the work efficiency
-is reduced - the overall system now must start new threads, allocate an additional buffer, load
-the array elements and write the temporary sums back into the buffer, etc.
+Another algorithm would be to add the first and second numbers together on one core, the third and
+fourth on a second core, and so on, saving the results into a new array which is half the size as
+the old. Then, we could repeat the reduction on the new array until we're left with a single sum.
+Of course, we could also give more than two elements to each core. This algorithm is highly
+step-efficient - the wall-clock time is proportional to log2(N). However, the work efficiency is
+reduced - the overall system now must start new threads, allocate temporary buffers, load the
+array elements and write the temporary sums back into the buffer, etc.
 
 Of course the same idea applies to much more complex problems. If you were working on an algorithm
 to search for an optimum in a complex mathematical function, you might improve work efficiency by
@@ -53,11 +53,11 @@ having all the parallel processors stop periodically to share information (and t
 search space) at the cost of worsened step efficiency (because now you've added this sequential
 sharing step that wasn't there previously).
 
-An alternate way of thinking about step efficiency is - what would dominate the wall-clock time if
-you had infinitely many parallel processors? In the real world of finite processors, Task 2 might
-be blocked by Task 1 because it uses Task 1's output (a data dependency) or just because no
-processor is available to execute Task 2 until Task 1 is done. If we had infinite processors though,
-the second reason would never happen - there is always a processor available for a task - so the
+Another way of thinking about step efficiency is - what would dominate the wall-clock time if you
+had infinitely many parallel processors? In the real world of finite processors, Task 2 might be
+blocked by Task 1 because it uses Task 1's output (a data dependency) or just because no processor
+is available to execute Task 2 until Task 1 is done. If we had infinite processors though, the
+second reason would never happen - there is always a processor available for a task - so the
 wall-clock time would be determined by the data dependencies.
 
 ## So... what?
@@ -82,3 +82,5 @@ the reverse is only sometimes true. This isn't really a fundamental thing, it's 
 experience nearly all software is doing more work than is strictly necessary to accomplish its goal.
 Most optimizations of most software just remove unnecessary work, and thus make the software
 more work efficient with no cost in step-efficiency.
+
+I hope that this idea helps you to understand the performance of your parallel programs!
