@@ -4,7 +4,6 @@ description = ""
 title = "Work-Efficiency vs. Step-Efficiency"
 tags = ["GPGPU"]
 categories = ["code"]
-draft = true
 +++
 
 At work recently, I found myself trying to explain the Work-Efficiency vs Step-Efficiency tradeoff
