@@ -4,6 +4,7 @@ description = ""
 title = "Building a Recipe Manager - Part 1"
 tags = ["Rust"]
 categories = ["code"]
+next = "/post/recipe-manager-part-2-druid-experience-report/"
 +++
 
 Something you might not know about me is that I'm an avid home cook. As such, I like to experiment
@@ -217,4 +218,6 @@ I'd say I've gotten to this point with maybe 10-12 hours of active work since I 
 it on Thursday, Oct 1 (not counting the time I spent writing this post or building a test case for
 that bug report). Decent enough progress. I intend to make this a weekly thing, but next weekend is
 Thanksgiving weekend here in Canada. I expect I'll be in a food coma and not interested in
-writing anything very much, so I guess the next post will probably be in two weeks. Cheers!
+writing anything very much, so I guess the [next post] will probably be in two weeks. Cheers!
+
+[next post]: /post/recipe-manager-part-2-druid-experience-report/
