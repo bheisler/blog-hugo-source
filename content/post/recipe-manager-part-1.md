@@ -177,7 +177,7 @@ learning curve, since it doesn't work quite like any other GUI toolkit I've ever
 lot of things that work well, but are not quite like anything else you're used to, so Rust
 programmers will be familiar with that feeling. Still, I was able to get it working.
 
-![Prototype Ingredient Editor](ingredient-editor-v1.png)
+![Prototype Ingredient Editor](/static/ingredient-editor-v1.png)
 
 Building it raised a few user-experience questions.
 
