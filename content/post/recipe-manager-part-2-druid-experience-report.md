@@ -18,7 +18,7 @@ Before we dig into Druid though, the progress in the last two weeks.
 
 ## The Current Ingredient Editor
 
-![Prototype Ingredient Editor](ingredient-editor-v2.png)
+![Prototype Ingredient Editor](/static/ingredient-editor-v2.png)
 
 I've done quite a bit of work on this so far. Compared to last week, probably the biggest thing is
 that it now displays error messages to the user when they type something wrong.
