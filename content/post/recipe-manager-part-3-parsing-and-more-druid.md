@@ -18,7 +18,7 @@ I think I'm nearly finished tweaking the ingredient editor. I've spent the bette
 on just this one view and that might seem like overkill, but for software like this the user
 experience is the whole point so it's important to get it right.
 
-![Ingredient Editor](ingredient-editor-v3.png)
+![Ingredient Editor](/static/ingredient-editor-v3.png)
 
 As you can see, the mass and volume fields are now much more lenient in what they accept. They
 handle fractions (including the unicode fraction characters), full singular and plural unit names,
