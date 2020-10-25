@@ -2,7 +2,7 @@
 date = "2020-10-04T13:00:00-06:00"
 description = ""
 title = "Building a Recipe Manager - Part 1"
-tags = ["Rust"]
+tags = ["Rust", "recipe-manager", "philosophy"]
 categories = ["code"]
 next = "/post/recipe-manager-part-2-druid-experience-report/"
 +++

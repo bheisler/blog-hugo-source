@@ -2,9 +2,10 @@
 date = "2020-10-18T15:00:00-06:00"
 description = ""
 title = "Building a Recipe Manager - Part 2 - Druid Experience Report"
-tags = ["Rust"]
+tags = ["Rust", "recipe-manager", "druid"]
 categories = ["code"]
 prev = "/post/recipe-manager-part-1/"
+next = "/post/recipe-manager-part-3-parsing-and-more-druid/"
 +++
 
 It's been a couple of weeks since the [last post], and as promised I'm back with some progress on
@@ -273,5 +274,7 @@ care to get things _just right_, where in JavaFX I'd probably just go with the b
 and not bother to customize things so much.
 
 As I'm developing this code and writing this series, I find that I still have things to say, so
-stay tuned for the next post next Sunday. Right now I'm thinking it will be about parsing user
+stay tuned for the [next post] next Sunday. Right now I'm thinking it will be about parsing user
 input and how hard it is to do it right.
+
+[next post]: /post/recipe-manager-part-3-parsing-and-more-druid/
