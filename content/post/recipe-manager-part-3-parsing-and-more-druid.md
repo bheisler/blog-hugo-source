@@ -140,10 +140,11 @@ input; the structured form can be re-parsed on load if needed.
 I've implemented that and it works exactly as expected.
 
 This raises a tension that I had mentioned in the previous post as well - how intrusive should
-widgets be into the user's data model? In my case, I want to be able to save the user's text input
-as well as (or instead of) the structured form, so this is logically part of my data model anyway.
-Not every application will want that; should they be required to keep a string in their data model
-anyway to bind the textbox to, or should the textbox try to hide that as an implementation detail?
+widgets be into the application's data model? In my case, I want to be able to save the user's text
+input as well as (or instead of) the structured form, so this is logically part of my data model
+anyway. Not every application will want that; should they be required to keep a string in their
+data model anyway to bind the textbox to, or should the textbox try to hide that as an
+implementation detail?
 
 ### Parsing User Input
 
