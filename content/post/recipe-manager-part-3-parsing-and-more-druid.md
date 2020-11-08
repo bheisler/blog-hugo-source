@@ -5,6 +5,7 @@ title = "Building a Recipe Manager - Part 3 - Parsing and more Druid"
 tags = ["Rust", "recipe-manager", "druid"]
 categories = ["code"]
 prev = "/post/recipe-manager-part-2-druid-experience-report/"
+next = "/post/recipe-manager-part-4-async-std-and-even-more-druid/"
 +++
 
 Hello! This post will likely be a bit shorter than the [last]. Today's topic is a few thoughts
@@ -228,5 +229,7 @@ add a comment to explain each piece. That would be helpful to have.
 ### Conclusion
 
 OK, so it wasn't that much shorter. I hope you found this interesting! I'm starting to think that
-weekly is a bit too much for these posts so I think I'll go for every two weeks for the next one.
+weekly is a bit too much for these posts so I think I'll go for every two weeks for the [next one].
 See you then!
+
+[next one]: /post/recipe-manager-part-4-async-std-and-even-more-druid/
