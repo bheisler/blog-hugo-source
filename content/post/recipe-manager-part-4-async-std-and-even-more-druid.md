@@ -5,6 +5,7 @@ title = "Building a Recipe Manager - Part 4 - Async-std and Even More Druid"
 tags = ["Rust", "recipe-manager", "druid"]
 categories = ["code"]
 prev = "/post/recipe-manager-part-3-parsing-and-more-druid/"
+next = "/post/recipe-manager-part-5-data-integrity/"
 +++
 
 Welcome back to my series of posts on the recipe-management software I'm building. If you haven't
@@ -141,9 +142,11 @@ work for both sides.
 ### Conclusion
 
 The all-ingredients editor is pretty much finished at this point. Now that I can edit and save
-ingredient data, the next thing is to start working on the recipe editor itself. All of the widgets
+ingredient data, the [next] thing is to start working on the recipe editor itself. All of the widgets
 and design ideas I've built up so far for the ingredient editor will come in handy for the recipe
 editor, but there are still plenty of problems to solve.
+
+[next]: /post/recipe-manager-part-5-data-integrity/
 
 I had a bunch of vacation time at work that I needed to use up. What with the whole pandemic
 situation (and the blizzard raging outside my window right now - Oh, Canada...) there's not much
